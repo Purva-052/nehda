@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Lora";
+    --font-body: "DM Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.625rem;
+
+    /* Light mode — warm beige base */
+    --background: 0.94 0.03 70;
+    --foreground: 0.18 0.04 40;
+    --card: 0.97 0.02 65;
+    --card-foreground: 0.18 0.04 40;
+    --popover: 0.97 0.02 65;
+    --popover-foreground: 0.18 0.04 40;
+
+    /* Primary: deep terracotta brown #6B3F1A */
+    --primary: 0.4 0.12 38;
+    --primary-foreground: 0.96 0.02 60;
+
+    /* Secondary: lighter sandy warm */
+    --secondary: 0.88 0.03 65;
+    --secondary-foreground: 0.3 0.05 38;
+    --muted: 0.88 0.025 65;
+    --muted-foreground: 0.48 0.04 50;
+
+    /* Accent: mustard #D4A017 */
+    --accent: 0.72 0.14 75;
+    --accent-foreground: 0.18 0.04 40;
+
+    /* Destructive: red #C0392B */
+    --destructive: 0.5 0.2 25;
+    --destructive-foreground: 0.96 0.01 25;
+
+    --border: 0.84 0.04 60;
+    --input: 0.84 0.04 60;
+    --ring: 0.4 0.12 38;
+
+    --chart-1: 0.65 0.18 38;
+    --chart-2: 0.72 0.14 75;
+    --chart-3: 0.5 0.2 25;
+    --chart-4: 0.68 0.1 85;
+    --chart-5: 0.55 0.15 30;
+
+    --sidebar: 0.97 0.02 65;
+    --sidebar-foreground: 0.18 0.04 40;
+    --sidebar-primary: 0.4 0.12 38;
+    --sidebar-primary-foreground: 0.96 0.02 60;
+    --sidebar-accent: 0.88 0.03 65;
+    --sidebar-accent-foreground: 0.3 0.05 38;
+    --sidebar-border: 0.84 0.04 60;
+    --sidebar-ring: 0.4 0.12 38;
+  }
+
+  .dark {
+    /* Dark mode — deep charcoal with warm undertones */
+    --background: 0.13 0.02 38;
+    --foreground: 0.92 0.025 65;
+    --card: 0.17 0.025 38;
+    --card-foreground: 0.92 0.025 65;
+    --popover: 0.17 0.025 38;
+    --popover-foreground: 0.92 0.025 65;
+
+    /* Primary: warm rust in dark — #8B4513 toned */
+    --primary: 0.62 0.16 38;
+    --primary-foreground: 0.13 0.02 38;
+
+    --secondary: 0.22 0.03 40;
+    --secondary-foreground: 0.8 0.02 65;
+    --muted: 0.22 0.03 40;
+    --muted-foreground: 0.52 0.025 55;
+
+    /* Accent: mustard glows bright on dark */
+    --accent: 0.72 0.16 75;
+    --accent-foreground: 0.13 0.02 38;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.92 0.01 25;
+
+    --border: 0.26 0.03 40;
+    --input: 0.26 0.03 40;
+    --ring: 0.62 0.16 38;
+
+    --chart-1: 0.65 0.2 38;
+    --chart-2: 0.72 0.16 75;
+    --chart-3: 0.55 0.22 25;
+    --chart-4: 0.7 0.12 85;
+    --chart-5: 0.55 0.18 30;
+
+    --sidebar: 0.17 0.025 38;
+    --sidebar-foreground: 0.92 0.025 65;
+    --sidebar-primary: 0.62 0.16 38;
+    --sidebar-primary-foreground: 0.13 0.02 38;
+    --sidebar-accent: 0.22 0.03 40;
+    --sidebar-accent-foreground: 0.8 0.02 65;
+    --sidebar-border: 0.26 0.03 40;
+    --sidebar-ring: 0.62 0.16 38;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), serif;
+  }
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("/assets/fonts/Lora.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400 700;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gradient-warm {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--primary)),
+      oklch(var(--accent))
+    );
+  }
+
+  .gradient-hero {
+    background: linear-gradient(
+      160deg,
+      oklch(0.15 0.04 38) 0%,
+      oklch(0.22 0.06 35) 40%,
+      oklch(0.18 0.05 40) 100%
+    );
+  }
+
+  .gradient-section {
+    background: linear-gradient(
+      180deg,
+      oklch(var(--background)),
+      oklch(var(--muted))
+    );
+  }
+
+  .gradient-subtle {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--background)),
+      oklch(var(--card))
+    );
+  }
+
+  .shadow-warm {
+    box-shadow: 0 10px 30px -5px oklch(var(--primary) / 0.18);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 20px 50px -10px oklch(var(--primary) / 0.22);
+  }
+
+  .shadow-subtle {
+    box-shadow: 0 2px 8px 0 oklch(var(--primary) / 0.1);
+  }
+
+  .border-accent {
+    border-top: 3px solid oklch(var(--accent));
+  }
+
+  /* Traditional Gujarati geometric border pattern */
+  .pattern-border {
+    position: relative;
+    border-top: 3px dashed oklch(var(--accent) / 0.7);
+  }
+
+  .pattern-border::before {
+    content: "◆  ❈  ◆  ❈  ◆  ❈  ◆  ❈  ◆  ❈  ◆";
+    display: block;
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: oklch(var(--accent) / 0.5);
+    margin-top: 0.5rem;
+  }
+
+  /* Decorative divider for sections */
+  .motif-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .motif-divider::before,
+  .motif-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      oklch(var(--accent) / 0.5),
+      oklch(var(--primary) / 0.6),
+      oklch(var(--accent) / 0.5),
+      transparent
+    );
+  }
+
+  /* Kathiyawadi card style */
+  .card-rustic {
+    @apply bg-card rounded-lg border border-border shadow-warm;
+    border-top: 3px solid oklch(var(--accent));
+  }
+
+  /* Warm section alternation */
+  .section-muted {
+    background: oklch(var(--muted) / 0.4);
+  }
+
+  .text-display {
+    font-family: var(--font-display), serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .text-gujarati {
+    font-family: "Noto Sans Gujarati", var(--font-body), sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Focus ring following brand colors */
+  .focus-brand:focus-visible {
+    outline: 2px solid oklch(var(--accent));
+    outline-offset: 2px;
+  }
+
+  /* Custom scrollbar (webkit) */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--primary) / 0.4);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--primary) / 0.7);
+  }
+}
