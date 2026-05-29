@@ -7,7 +7,7 @@ export interface DailyMenuItem {
 }
 
 export type AdminResult = { ok: string } | { err: string };
-
+// nkkn
 // Frontend-friendly version with normalized description
 export interface DailyMenuItemView {
   id: string;
