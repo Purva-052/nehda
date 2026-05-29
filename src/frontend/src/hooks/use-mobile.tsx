@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useIsMobile(breakpoint = 768): boolean {
+  // bmhmbnmm
   const [isMobile, setIsMobile] = useState<boolean>(false);
   useEffect(() => {
     const update = () => setIsMobile(window.innerWidth < breakpoint);
@@ -10,3 +11,6 @@ export function useIsMobile(breakpoint = 768): boolean {
   }, [breakpoint]);
   return isMobile;
 }
+// mvlcvmlmv
+
+
